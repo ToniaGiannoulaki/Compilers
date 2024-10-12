@@ -1,91 +1,87 @@
-// Pikrakis.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// exercise1.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
-#include<stack>
-#include<string>
+#include <stack>
+#include <string>
 using namespace std;
 
 int main()
 {
-	cout << "DOSE SYMBOLOSEIRA: ";
-	string symbseira;
-	cin >> symbseira; //εισαγει ο χρηστης τη συμβολοσειρα σε αυτη τη μεταβλητη
-	int something = symbseira.size(); //στη μεταβλητη something βαζουμε το μεγεθος της συμβολοσειρας
-	stack <char> s; //οριζουμε στοιβα s
-	bool check = true; //boolean που θα μας βοηθησει να μαθουμε αν η συμβολοσειρα ξεκιναει με x ή οχι
-	int counterx = 0; //μετραει τα x
-	int countery = 0; //μετραει τα y
-	if (symbseira[0] == 'x') //αν η συμβολοσειρα ξεκιναει με x
+	cout << "ENTER STRING: "; // Prompt the user to enter a string
+	string symbseira; 
+	cin >> symbseira; // The user inputs the string into this variable
+	int something = symbseira.size(); // We store the size of the string in the variable something
+	stack <char> s; // Define stack s
+	bool check = true; // Boolean that will help us determine if the string starts with 'x' or not
+	int counterx = 0; // Counts the 'x'
+	int countery = 0; // Counts the 'y'
+	if (symbseira[0] == 'x') // If the string starts with 'x'
 	{
-		cout << "to proto grama einai x , ara synexizeme \n ";
-		for (int i = 0; i < something; i++) //ξεκινα επαναληψη και παιρνουμε ενα ενα τα στοιχεια της συμβολοσειρας με τη βοηθεια του i
+		cout << "the first character is x, so we continue \n ";
+		for (int i = 0; i < something; i++) // Start iteration and take the elements of the string one by one using i
 		{
-			if (symbseira[i]=='x'||symbseira[i]=='y') //ελεγχουμε αν τα στοιχεια της συμβολοσειρας ειναι x ή y
+			if (symbseira[i] == 'x' || symbseira[i] == 'y') // Check if the elements of the string are 'x' or 'y'
 			{
-				cout << "to symbolo einai x h y ,synexizoyme \n ";
-				if(symbseira[i]=='x') //αν ειναι x
+				cout << "the symbol is x or y, we continue \n ";
+				if (symbseira[i] == 'x') // If it is 'x'
 				{
-					s.push(symbseira[i]); //εισαγωγη στοιχειου x στη στοιβα
-					counterx++; //μετρητης x που αυξανεται κατα 1
-					cout << "to symbolo einai x ara prosththete sto stack\n ";
+					s.push(symbseira[i]); // Insert element 'x' into the stack
+					counterx++; // Counter for 'x' increases by 1
+					cout << "the symbol is x so added to the stack\n ";
 				}
-				else //αν ειναι y 
+				else // If it is 'y' 
 				{
-					cout << "to symbolo einai y ,";
-					countery++; //μετρητης y που αυξανεται κατα 1
-					if(!s.empty()) //αν η συμβολοσειρα δεν ειναι αδεια
+					cout << "the symbol is y,";
+					countery++; // Counter for 'y' increases by 1
+					if (!s.empty()) // If the stack is not empty
 					{
-						s.pop(); //αφαιρει στοιχειο απο τη στοιβα
-						cout << "afairethike to x \n";
+						s.pop(); // Remove element from the stack
+						cout << "removed the x \n";
 					}
-					else //αν η συμβολοσειρα ειναι αδεια
+					else // If the stack is empty
 					{
-						cout << "den yparxei x, kai afoy den yparxei x den einai egkyro \n";
-						break; /* δεν γινεται να διαγραφει στοιχειο αν η στοιβα ειναι αδεια, επομενως τα x ειναι λιγοτερα απο τα y,
-							      οποτε βγαινουμε απο την επαναληψη, η συμβολοσειρα δεν ειναι εγκυρη */
+						cout << "there is no x, and since there is no x it is not valid \n";
+						break; /* It is not possible to remove an element if the stack is empty, therefore there are fewer 'x's than 'y's,
+							      so we exit the loop, the string is not valid */
 					}
 				}
 			
 			}
 			else
 			{
-				cout << "Lathos eisagogi , h symboloseira den einai egkirei \n";
-				break; /*το εκαστοτε στοιχειο στη συμβολοσειρα δεν ειναι ουτε x ουτε y επομενως βγαινουμε απο την επαναληψη,
-					     η συμβολοσειρα δεν ειναι εγκυρη */
+				cout << "Invalid input, the string is not valid \n";
+				break; /* The current element in the string is neither 'x' nor 'y', so we exit the loop,
+					     the string is not valid */
 			}
 		}
 	}
 	else
 	{
-		cout << "to proto symbolo den einai x, ara mh apodekth \n ";
-		check = false; //η συμβολοσειρα δεν ξεκιναει με x αρα το check γινεται false, η συμβολοσειρα δεν ειναι εγκυρη
+		cout << "the first symbol is not x, so not accepted \n ";
+		check = false; // The string does not start with 'x', so check becomes false, the string is not valid
 	}
 
-	if(s.empty() && (counterx == countery) && check) /* αν η στοιβα ειναι αδεια, τα x ειναι ισα με τα y και η check ειναι true
-													    (δηλαδη η συμβολοσειρα ξεκιναει με x), τοτε η συμβολοσειρα ειναι αποδεκτη */
+	if (s.empty() && (counterx == countery) && check) /* If the stack is empty, the 'x's are equal to the 'y's, and check is true
+													    (meaning the string starts with 'x'), then the string is accepted */
 	{
-		cout << "Egine apodekth";
+		cout << "It was accepted";
 	}
-	else //αν τα παραπανω δεν ισχουν η συμβολοσειρα δεν ειναι αποδεκτη
+	else // If the above conditions are not met, the string is not accepted
 	{
-		cout << "mh apodekth";
+		cout << "not accepted";
 	}
-	
-	
-	
 }
 
-/*xyxyxyxyxyxyyxyxyxyxyxyxxxxyyy 
- *ta bazoyme me thn seira sto stack kai kanoyme ta parakato 
- *{x    if x counterx++
- *y    if y countery++
- *countery>counterx break cout lathos}
- *.....
- *counterx==countery{
- *cout sosto
- *}
- *else{cout lathos}
+/* xyxyxyxyxyxyyxyxyxyxyxyxxxxyyy 
+ * we put them in order in the stack and do the following 
+ * {x    if x counterx++
+ * y    if y countery++
+ * countery>counterx break cout error}
+ * .....
+ * counterx == countery {
+ * cout correct
+ * }
+ * else {cout error}
  *
- * 
  */
